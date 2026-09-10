@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Overview &amp; Sitemap — Solar PM Portal | For Architect Review</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1B2430;
+            --paper: #FFFFFF;
+            --paper-soft: #F6F7F9;
+            --sidebar: #1B212B;
+            --sidebar-soft: #242C38;
+            --sidebar-line: rgba(255, 255, 255, .08);
+            --sidebar-text: #AEB8C4;
+            --accent: #5B57E0;
+            --accent-soft: #EEEDFB;
+            --teal: #0EA5A5;
+            --teal-soft: #E6F7F6;
+            --amber: #C9821A;
+            --amber-soft: #FBF1DF;
+            --red: #C1443B;
+            --green: #1F8F5F;
+            --border: #E4E7EC;
+            --steel: #5C6B7A;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 15.5px;
+            line-height: 1.65;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'IBM Plex Sans', sans-serif;
+            margin: 0;
+            letter-spacing: -.01em;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        code {
+            font-family: 'IBM Plex Mono', monospace;
+            background: var(--paper-soft);
+            padding: 1px 5px;
+            border-radius: 3px;
+            font-size: .92em;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 270px 1fr;
+            min-height: 100vh;
+        }
+
+        /* ---------- Sidebar ---------- */
+        .sidebar {
+            background: var(--sidebar);
+            color: var(--sidebar-text);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 26px 22px 30px;
+        }
+
+        .sidebar .brand {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 4px;
+        }
+
+        .sidebar h1 {
+            font-size: 16.5px;
+            color: #fff;
+            line-height: 1.35;
+            margin-bottom: 18px;
+        }
+
+        .facts {
+            background: var(--sidebar-soft);
+            border: 1px solid var(--sidebar-line);
+            border-radius: 5px;
+            padding: 14px 16px;
+            margin-bottom: 26px;
+        }
+
+        .facts .f {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            padding: 5px 0;
+            border-bottom: 1px solid var(--sidebar-line);
+        }
+
+        .facts .f:last-child {
+            border-bottom: none;
+        }
+
+        .facts .f b {
+            color: #EDEFF3;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+        }
+
+        .sidebar nav {
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+        }
+
+        .sidebar nav a {
+            text-decoration: none;
+            color: var(--sidebar-text);
+            font-size: 13px;
+            padding: 9px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .sidebar nav a .no {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10.5px;
+            color: #6D7787;
+        }
+
+        .sidebar nav a:hover {
+            background: var(--sidebar-soft);
+            color: #fff;
+        }
+
+        .print-btn {
+            margin-top: 22px;
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--sidebar-line);
+            color: var(--sidebar-text);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .05em;
+            padding: 9px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .print-btn:hover {
+            border-color: var(--accent);
+            color: #fff;
+        }
+
+        /* ---------- Main ---------- */
+        main {
+            padding: 56px 64px 90px;
+            max-width: 900px;
+        }
+
+        section {
+            margin-bottom: 64px;
+            scroll-margin-top: 24px;
+        }
+
+        .sec-tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11.5px;
+            color: var(--accent);
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        section h2 {
+            font-size: 24px;
+            margin-top: 6px;
+            margin-bottom: 18px;
+        }
+
+        section>p.lede {
+            color: var(--steel);
+            font-size: 14.5px;
+            max-width: 680px;
+            margin-bottom: 22px;
+        }
+
+        .rule {
+            height: 1px;
+            background: var(--border);
+            margin: 0 0 26px;
+        }
+
+        /* one-screen overview box */
+        .overview-box {
+            border: 1px solid var(--border);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 6px 6px 0;
+            padding: 22px 26px;
+            background: var(--paper-soft);
+        }
+
+        .overview-box p {
+            margin: 0 0 12px;
+        }
+
+        .overview-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        .overview-box .k {
+            font-weight: 600;
+            color: var(--ink);
+        }
+
+        /* actors table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13.5px;
+        }
+
+        table.actors th,
+        table.actors td {
+            border: 1px solid var(--border);
+            padding: 11px 13px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        table.actors th {
+            background: var(--ink);
+            color: #fff;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .04em;
+            font-weight: 500;
+        }
+
+        table.actors td.role {
+            font-weight: 600;
+        }
+
+        .badge {
+            display: inline-block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10.5px;
+            padding: 2px 7px;
+            border-radius: 10px;
+            letter-spacing: .02em;
+        }
+
+        .b-web {
+            background: var(--accent-soft);
+            color: var(--accent);
+        }
+
+        .b-mobile {
+            background: var(--teal-soft);
+            color: var(--teal);
+        }
+
+        /* module map */
+        .module-map {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .mmod {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 16px 14px;
+            background: #fff;
+        }
+
+        .mmod .mno {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10.5px;
+            color: var(--accent);
+        }
+
+        .mmod h4 {
+            font-size: 13.5px;
+            margin-top: 4px;
+        }
+
+        .mmod p {
+            font-size: 12px;
+            color: var(--steel);
+            margin-top: 6px;
+        }
+
+        .mmap-arrow {
+            text-align: center;
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--steel);
+            font-size: 12px;
+            margin: 6px 0;
+        }
+
+        .shared-row {
+            border: 1px dashed var(--border);
+            border-radius: 6px;
+            padding: 12px 16px;
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11.5px;
+            color: var(--steel);
+            background: var(--paper-soft);
+        }
+
+        .shared-row b {
+            color: var(--ink);
+        }
+
+        /* sitemap */
+        .app-group {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+
+        .app-group-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 13px 18px;
+            background: var(--ink);
+            color: #fff;
+        }
+
+        .app-group-head h4 {
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .app-group-head .count {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: #B9C0CC;
+        }
+
+        .page-row {
+            display: grid;
+            grid-template-columns: 230px 1fr;
+            gap: 16px;
+            padding: 11px 18px;
+            border-top: 1px solid var(--border);
+            align-items: baseline;
+        }
+
+        .page-row:first-of-type {
+            border-top: none;
+        }
+
+        .page-row .route {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--accent);
+        }
+
+        .page-row .desc {
+            font-size: 13px;
+            color: var(--ink);
+        }
+
+        .page-row .desc .name {
+            font-weight: 600;
+        }
+
+        .page-row .desc .who {
+            color: var(--steel);
+            font-size: 12px;
+        }
+
+        /* entities table */
+        table.entities th,
+        table.entities td {
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            text-align: left;
+            font-size: 13px;
+            vertical-align: top;
+        }
+
+        table.entities th {
+            background: var(--ink);
+            color: #fff;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        table.entities td.ename {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+            color: var(--accent);
+            white-space: nowrap;
+        }
+
+        /* flows */
+        .flow {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 20px 22px;
+            margin-bottom: 16px;
+        }
+
+        .flow h4 {
+            font-size: 14.5px;
+            margin-bottom: 14px;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .flow h4 .fn {
+            font-family: 'IBM Plex Mono', monospace;
+            background: var(--accent);
+            color: #fff;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+
+        .steps {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+            align-items: center;
+        }
+
+        .step-chip {
+            font-size: 12.5px;
+            background: var(--paper-soft);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 6px 13px;
+        }
+
+        .step-arrow {
+            color: var(--steel);
+            padding: 0 8px;
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        /* nfr */
+        .nfr-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+        }
+
+        .nfr-card {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 14px 18px;
+        }
+
+        .nfr-card .cap {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10.5px;
+            color: var(--accent);
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .nfr-card p {
+            font-size: 13px;
+            color: var(--ink);
+            margin: 0;
+        }
+
+        /* footer */
+        .doc-footer {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--steel);
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        @media (max-width:980px) {
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: relative;
+                height: auto;
+            }
+
+            main {
+                padding: 36px 22px 70px;
+            }
+
+            .module-map {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .nfr-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+            .sidebar {
+                display: none;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            main {
+                padding: 20px;
+            }
+
+            section {
+                margin-bottom: 30px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layout">
+
+        <aside class="sidebar">
+            <div class="brand">Internal — For Architect Review</div>
+            <h1>Solar PM Portal — System Overview &amp; Sitemap</h1>
+
+            <div class="facts">
+                <div class="f"><span>User roles</span><b>5</b></div>
+                <div class="f"><span>Web screens</span><b>42</b></div>
+                <div class="f"><span>Mobile screens</span><b>8</b></div>
+                <div class="f"><span>Core entities</span><b>17</b></div>
+                <div class="f"><span>Apps</span><b>2 (Web + Mobile)</b></div>
+            </div>
+
+            <nav>
+                <a href="#what"><span class="no">01</span> What This Project Is</a>
+                <a href="#users"><span class="no">02</span> Who Uses It</a>
+                <a href="#modules"><span class="no">03</span> System Module Map</a>
+                <a href="#sitemap"><span class="no">04</span> Page / Screen Inventory</a>
+                <a href="#data"><span class="no">05</span> Core Data Entities</a>
+                <a href="#flows"><span class="no">06</span> Key User Flows</a>
+                <a href="#access"><span class="no">07</span> Access Control Summary</a>
+                <a href="#nfr"><span class="no">08</span> Constraints for Architecture</a>
+            </nav>
+
+            <button class="print-btn" onclick="window.print()">↓ EXPORT / PRINT</button>
+        </aside>
+
+        <main>
+
+            <section id="what">
+                <div class="sec-tag">01 — Context</div>
+                <h2>What This Project Is</h2>
+                <div class="overview-box">
+                    <p><span class="k">In one sentence:</span> a single web + mobile platform that lets a Project
+                        Management Consultant track daily construction progress, schedule, compliance and money across
+                        56 solar sites run by 20 different contractors — replacing spreadsheets and WhatsApp updates
+                        with one live source of truth.</p>
+                    <p><span class="k">Who it's for:</span> a Project Management Consultancy (PBR Enterprises)
+                        overseeing a government solar programme, the main EPC contractor who owns the outcome (Balaji
+                        Human Safety), the 20 sub-contractors physically building the sites, and the finance teams
+                        releasing payment against verified work.</p>
+                    <p><span class="k">What it actually does, mechanically:</span> every site engineer logs a daily
+                        report from the field (with GPS-tagged photos). Those reports roll up automatically into
+                        weekly/monthly summaries and into a live schedule (a CPM/Gantt engine) that flags when any site
+                        is at risk of slipping. Government approvals and technical certifications are tracked per site
+                        with expiry alerts. Payment is only released once a physical measurement is jointly certified
+                        against the invoice raised. Four different people looking at the same underlying data — a PMC
+                        officer, a site contractor, a client executive, and a finance controller — each see only the
+                        slice relevant to their job.</p>
+                    <p><span class="k">Why it needs to exist:</span> at 56 concurrent sites with hard government
+                        deadlines and milestone-linked payments, delay or fraud anywhere is expensive and currently
+                        invisible until it's already a problem. The system's job is to surface risk (schedule,
+                        compliance, financial) as early as possible, and to make sure money only moves when real work is
+                        verified.</p>
+                </div>
+            </section>
+
+            <section id="users">
+                <div class="sec-tag">02 — Actors</div>
+                <h2>Who Uses It</h2>
+                <p class="lede">Five distinct actors. Each gets a scoped view of the same database — this drives the
+                    entire page inventory in Section 04.</p>
+                <table class="actors">
+                    <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th>Who they are</th>
+                            <th>Approx. count</th>
+                            <th>Device</th>
+                            <th>Primary job in the system</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="role">PMC Officer</td>
+                            <td>PBR Enterprises staff overseeing the whole programme</td>
+                            <td>~5–10</td>
+                            <td><span class="badge b-web">Web</span></td>
+                            <td>Review &amp; approve reports, own the schedule, own compliance and invoice sign-off</td>
+                        </tr>
+                        <tr>
+                            <td class="role">Site Engineer / EPC User</td>
+                            <td>Field staff of each of the 20 EPC contractors</td>
+                            <td>~60–100</td>
+                            <td><span class="badge b-mobile">Mobile</span> <span class="badge b-web">Web</span></td>
+                            <td>Submit daily reports, upload site media, raise issues, submit bills — scoped to own
+                                sites only</td>
+                        </tr>
+                        <tr>
+                            <td class="role">Client Executive</td>
+                            <td>Balaji Human Safety leadership</td>
+                            <td>~3–5</td>
+                            <td><span class="badge b-web">Web</span></td>
+                            <td>Read-only macro view of progress and spend, for government-facing reporting</td>
+                        </tr>
+                        <tr>
+                            <td class="role">Finance / Accounts</td>
+                            <td>Authorised accounts staff at Balaji and PBR</td>
+                            <td>~4–6</td>
+                            <td><span class="badge b-web">Web</span></td>
+                            <td>Certify measurements against invoices, process payment, manage ledgers &amp; GST</td>
+                        </tr>
+                        <tr>
+                            <td class="role">System Admin</td>
+                            <td>Small internal team (PMC-side)</td>
+                            <td>1–2</td>
+                            <td><span class="badge b-web">Web</span></td>
+                            <td>Manage users, roles, site assignments; not a separate dashboard, a settings area within
+                                the PMC role</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="modules">
+                <div class="sec-tag">03 — Architecture at a Glance</div>
+                <h2>System Module Map</h2>
+                <p class="lede">Four business modules sit on top of one shared data and identity layer. Every module
+                    reads/writes against the same Programme → District → Site → Contractor hierarchy.</p>
+                <div class="module-map">
+                    <div class="mmod">
+                        <div class="mno">MOD A</div>
+                        <h4>Progress Reporting</h4>
+                        <p>Daily/weekly/monthly field reports &amp; approvals</p>
+                    </div>
+                    <div class="mmod">
+                        <div class="mno">MOD B</div>
+                        <h4>CPM Scheduling</h4>
+                        <p>Gantt engine, critical path, delay alerts</p>
+                    </div>
+                    <div class="mmod">
+                        <div class="mno">MOD C</div>
+                        <h4>Compliance Vault</h4>
+                        <p>AVL matching, govt. approvals, documents</p>
+                    </div>
+                    <div class="mmod">
+                        <div class="mno">MOD D</div>
+                        <h4>Finance Suite</h4>
+                        <p>Invoicing, JMC, ledger, GST</p>
+                    </div>
+                </div>
+                <div class="mmap-arrow">↓ all four read/write through ↓</div>
+                <div class="shared-row">
+                    <span><b>Identity &amp; RBAC</b> — auth, role, site-scoping</span>
+                    <span><b>Hierarchy Service</b> — Programme/District/Site/Contractor</span>
+                    <span><b>Media &amp; Document Store</b> — geo-tagged uploads, drawings, certs</span>
+                    <span><b>Notification Engine</b> — in-app / email / SMS-WhatsApp</span>
+                    <span><b>Audit Log</b> — every write, everywhere</span>
+                </div>
+            </section>
+
+            <section id="sitemap">
+                <div class="sec-tag">04 — Build Inventory</div>
+                <h2>Page / Screen Inventory</h2>
+                <p class="lede">Every screen the platform needs, grouped by app and role, with an indicative route so
+                    this can go straight into a wireframe or routing table. Not final URLs — a naming convention to
+                    scope against.</p>
+
+                <div class="app-group">
+                    <div class="app-group-head">
+                        <h4>Shared / Auth — Web</h4><span class="count">6 screens</span>
+                    </div>
+                    <div class="page-row"><span class="route">/web/auth/login</span><span class="desc"><span
+                                class="name">Login</span> <span class="who">— all roles</span></span></div>
+                    <div class="page-row"><span class="route">/web/auth/reset-password</span><span class="desc"><span
+                                class="name">Forgot / Reset Password</span> <span class="who">— all roles</span></span>
+                    </div>
+                    <div class="page-row"><span class="route">/web/onboarding/site-assignment</span><span
+                            class="desc"><span class="name">First-login Site Assignment</span> <span class="who">— EPC,
+                                set up once by admin</span></span></div>
+                    <div class="page-row"><span class="route">/web/admin/users</span><span class="desc"><span
+                                class="name">User &amp; Role Management</span> <span class="who">— PMC /
+                                Admin</span></span></div>
+                    <div class="page-row"><span class="route">/web/admin/audit-log</span><span class="desc"><span
+                                class="name">Audit Log Viewer</span> <span class="who">— PMC, view-only for Client &amp;
+                                Finance</span></span></div>
+                    <div class="page-row"><span class="route">/web/admin/notifications</span><span class="desc"><span
+                                class="name">Notification Preferences</span> <span class="who">— all roles</span></span>
+                    </div>
+                </div>
+
+                <div class="app-group">
+                    <div class="app-group-head">
+                        <h4>PMC — Web</h4><span class="count">16 screens</span>
+                    </div>
+                    <div class="page-row"><span class="route">/web/pmc/dashboard</span><span class="desc"><span
+                                class="name">Control Room Home</span> <span class="who">— KPI cards + R/A/G health
+                                map</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/hierarchy</span><span class="desc"><span
+                                class="name">Programme ▸ District ▸ Site ▸ Contractor Explorer</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/dpr/queue</span><span class="desc"><span
+                                class="name">DPR Review Queue</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/dpr/:id</span><span class="desc"><span
+                                class="name">DPR Detail &amp; Approve/Reject</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/reports/wpr-mpr</span><span class="desc"><span
+                                class="name">WPR / MPR Report Viewer</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/reports/quarterly-audit</span><span
+                            class="desc"><span class="name">Quarterly Milestone Audit</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/schedule/gantt</span><span class="desc"><span
+                                class="name">Master CPM / Gantt Scheduler</span> <span class="who">— all 56
+                                sites</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/schedule/alerts</span><span class="desc"><span
+                                class="name">Critical Path &amp; Delay Alert Console</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/compliance/avl</span><span class="desc"><span
+                                class="name">AVL &amp; Technical Spec Manager</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/compliance/checklist</span><span
+                            class="desc"><span class="name">Compliance Heat-map &amp; Checklist Manager</span></span>
+                    </div>
+                    <div class="page-row"><span class="route">/web/pmc/compliance/ncr</span><span class="desc"><span
+                                class="name">NCR Tracker</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/documents</span><span class="desc"><span
+                                class="name">Document &amp; Drawing Repository</span> <span class="who">—
+                                global</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/finance/invoices</span><span class="desc"><span
+                                class="name">Invoice / RA Bill Review Queue</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/finance/jmc</span><span class="desc"><span
+                                class="name">JMC Certification Workspace</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/finance/ledger</span><span class="desc"><span
+                                class="name">Contractor Ledger Overview</span></span></div>
+                    <div class="page-row"><span class="route">/web/pmc/reports/export</span><span class="desc"><span
+                                class="name">PDF / MIS Report Builder</span></span></div>
+                </div>
+
+                <div class="app-group">
+                    <div class="app-group-head">
+                        <h4>EPC / Site Contractor — Web</h4><span class="count">10 screens</span>
+                    </div>
+                    <div class="page-row"><span class="route">/web/epc/dashboard</span><span class="desc"><span
+                                class="name">My Sites Home</span></span></div>
+                    <div class="page-row"><span class="route">/web/epc/dpr/new</span><span class="desc"><span
+                                class="name">Daily Progress Report Entry</span></span></div>
+                    <div class="page-row"><span class="route">/web/epc/dpr/history</span><span class="desc"><span
+                                class="name">My DPR/WPR History &amp; Status</span></span></div>
+                    <div class="page-row"><span class="route">/web/epc/schedule</span><span class="desc"><span
+                                class="name">My Site Gantt / Task View</span></span></div>
+                    <div class="page-row"><span class="route">/web/epc/materials</span><span class="desc"><span
+                                class="name">Material Request Log</span></span></div>
+                    <div class="page-row"><span class="route">/web/epc/issues</span><span class="desc"><span
+                                class="name">Issue / Bottleneck Reporting</span> <span class="who">— e.g. Right-of-Way
+                                disputes</span></span></div>
+                    <div class="page-row"><span class="route">/web/epc/quality</span><span class="desc"><span
+                                class="name">Quality Test Report Upload</span></span></div>
+                    <div class="page-row"><span class="route">/web/epc/finance/ra-bill</span><span class="desc"><span
+                                class="name">RA Bill / Invoice Submission</span></span></div>
+                    <div class="page-row"><span class="route">/web/epc/documents</span><span class="desc"><span
+                                class="name">Document Library</span> <span class="who">— scoped to own
+                                sites</span></span></div>
+                    <div class="page-row"><span class="route">/web/epc/compliance</span><span class="desc"><span
+                                class="name">Compliance Checklist</span> <span class="who">— scoped to own
+                                sites</span></span></div>
+                </div>
+
+                <div class="app-group">
+                    <div class="app-group-head">
+                        <h4>Main Contractor (Client) — Web</h4><span class="count">4 screens</span>
+                    </div>
+                    <div class="page-row"><span class="route">/web/client/dashboard</span><span class="desc"><span
+                                class="name">Executive Cockpit Home</span></span></div>
+                    <div class="page-row"><span class="route">/web/client/financials</span><span class="desc"><span
+                                class="name">Programme Financial Overview</span></span></div>
+                    <div class="page-row"><span class="route">/web/client/health-map</span><span class="desc"><span
+                                class="name">District / Site Health Map</span> <span class="who">—
+                                read-only</span></span></div>
+                    <div class="page-row"><span class="route">/web/client/reports</span><span class="desc"><span
+                                class="name">Report Export Center</span></span></div>
+                </div>
+
+                <div class="app-group">
+                    <div class="app-group-head">
+                        <h4>Finance &amp; Accounts — Web</h4><span class="count">6 screens</span>
+                    </div>
+                    <div class="page-row"><span class="route">/web/finance/dashboard</span><span class="desc"><span
+                                class="name">Treasury Desk Home</span></span></div>
+                    <div class="page-row"><span class="route">/web/finance/jmc</span><span class="desc"><span
+                                class="name">JMC Approval Queue</span></span></div>
+                    <div class="page-row"><span class="route">/web/finance/payments</span><span class="desc"><span
+                                class="name">Invoice / Payment Processing</span></span></div>
+                    <div class="page-row"><span class="route">/web/finance/ledger</span><span class="desc"><span
+                                class="name">Contractor Ledger &amp; Retention Tracker</span></span></div>
+                    <div class="page-row"><span class="route">/web/finance/gst</span><span class="desc"><span
+                                class="name">GST &amp; Tax Compliance Tracker</span></span></div>
+                    <div class="page-row"><span class="route">/web/finance/advances</span><span class="desc"><span
+                                class="name">Mobilization Advance Tracker</span></span></div>
+                </div>
+
+                <div class="app-group">
+                    <div class="app-group-head">
+                        <h4>Mobile Field App — Site Engineers</h4><span class="count">8 screens</span>
+                    </div>
+                    <div class="page-row"><span class="route">/mobile/login</span><span class="desc"><span
+                                class="name">Login</span> <span class="who">— offline-aware</span></span></div>
+                    <div class="page-row"><span class="route">/mobile/home</span><span class="desc"><span
+                                class="name">My Site Home</span></span></div>
+                    <div class="page-row"><span class="route">/mobile/dpr/new</span><span class="desc"><span
+                                class="name">DPR Entry</span> <span class="who">— offline-capable, camera +
+                                GPS</span></span></div>
+                    <div class="page-row"><span class="route">/mobile/dpr/queue</span><span class="desc"><span
+                                class="name">Upload Queue</span> <span class="who">— pending sync</span></span></div>
+                    <div class="page-row"><span class="route">/mobile/tasks</span><span class="desc"><span
+                                class="name">My Tasks / Milestone Tracker</span></span></div>
+                    <div class="page-row"><span class="route">/mobile/issues/new</span><span class="desc"><span
+                                class="name">Report an Issue</span></span></div>
+                    <div class="page-row"><span class="route">/mobile/materials/new</span><span class="desc"><span
+                                class="name">Request Material</span></span></div>
+                    <div class="page-row"><span class="route">/mobile/notifications</span><span class="desc"><span
+                                class="name">Notifications Inbox</span></span></div>
+                </div>
+            </section>
+
+            <section id="data">
+                <div class="sec-tag">05 — Data Model</div>
+                <h2>Core Data Entities</h2>
+                <p class="lede">Not a full ERD — the entity set an architect needs to start one. Everything below hangs
+                    off the Programme → District → Site → Contractor spine.</p>
+                <table class="entities">
+                    <thead>
+                        <tr>
+                            <th>Entity</th>
+                            <th>Key fields</th>
+                            <th>Relates to</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="ename">Programme</td>
+                            <td>Total MW, scheme name, COD target</td>
+                            <td>Has many Districts</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">District</td>
+                            <td>Name, MW allocated</td>
+                            <td>Belongs to Programme · Has many Sites</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">Site</td>
+                            <td>Name, coordinates, MW capacity, geofence radius</td>
+                            <td>Belongs to District · Assigned to one Contractor</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">Contractor (EPC)</td>
+                            <td>Name, assigned sites, contact</td>
+                            <td>Has many Users, DPRs, Invoices</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">User</td>
+                            <td>Role, site-scope, contact</td>
+                            <td>Belongs to Contractor (if EPC) · Submits DPRs / Issues</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">DPR</td>
+                            <td>Date, site, labour, materials, weather, media refs</td>
+                            <td>Belongs to Site &amp; Submitting User · Rolls into WPR/MPR</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">WPR / MPR</td>
+                            <td>Period, aggregated metrics, planned-vs-actual %</td>
+                            <td>Aggregates many DPRs</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">Task / Milestone</td>
+                            <td>Name, dependency, duration, status</td>
+                            <td>Belongs to Site · Feeds CPM calculation</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">Baseline</td>
+                            <td>Locked schedule snapshot, version, approver</td>
+                            <td>Belongs to Site's Gantt</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">AVL Item</td>
+                            <td>Material type, approved make, spec value</td>
+                            <td>Referenced by DPR material entries</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">ComplianceItem</td>
+                            <td>Type (land/MSEDCL/CEIG/net-metering), status, expiry date</td>
+                            <td>Belongs to Site</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">Document</td>
+                            <td>File ref, type, version, tags</td>
+                            <td>Belongs to Site / Programme</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">NCR</td>
+                            <td>Description, severity, owner, closure status</td>
+                            <td>Belongs to Site</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">Invoice / RA Bill</td>
+                            <td>Amount, milestone ref, status</td>
+                            <td>Belongs to Contractor &amp; Site</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">JMC</td>
+                            <td>Measured qty, verifier, certified date</td>
+                            <td>Linked 1:1 to Invoice</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">LedgerEntry</td>
+                            <td>Type (advance/retention/penalty), amount, date</td>
+                            <td>Belongs to Contractor</td>
+                        </tr>
+                        <tr>
+                            <td class="ename">AuditLog</td>
+                            <td>Actor, action, entity ref, timestamp</td>
+                            <td>References any entity above</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="flows">
+                <div class="sec-tag">06 — Behaviour</div>
+                <h2>Key User Flows</h2>
+                <p class="lede">Four flows that touch every module and every role — worth whiteboarding before backend
+                    design starts.</p>
+
+                <div class="flow">
+                    <h4><span class="fn">FLOW 1</span>Daily report → approval → aggregation</h4>
+                    <div class="steps">
+                        <span class="step-chip">Site Engineer submits DPR (mobile, offline-capable)</span><span
+                            class="step-arrow">→</span>
+                        <span class="step-chip">Auto-sync when online</span><span class="step-arrow">→</span>
+                        <span class="step-chip">PMC reviews in queue</span><span class="step-arrow">→</span>
+                        <span class="step-chip">Approve / Reject / Return</span><span class="step-arrow">→</span>
+                        <span class="step-chip">Approved DPRs roll into WPR/MPR automatically</span>
+                    </div>
+                </div>
+
+                <div class="flow">
+                    <h4><span class="fn">FLOW 2</span>Schedule delay → escalation</h4>
+                    <div class="steps">
+                        <span class="step-chip">Task marked delayed on a site's Gantt</span><span
+                            class="step-arrow">→</span>
+                        <span class="step-chip">CPM engine recalculates critical path</span><span
+                            class="step-arrow">→</span>
+                        <span class="step-chip">Threshold breached (e.g. &gt;3 days)</span><span
+                            class="step-arrow">→</span>
+                        <span class="step-chip">Alert fires: EPC → PMC → Client</span><span class="step-arrow">→</span>
+                        <span class="step-chip">District health indicator turns Amber/Red</span>
+                    </div>
+                </div>
+
+                <div class="flow">
+                    <h4><span class="fn">FLOW 3</span>Invoice → verified payment</h4>
+                    <div class="steps">
+                        <span class="step-chip">EPC submits RA bill against a milestone</span><span
+                            class="step-arrow">→</span>
+                        <span class="step-chip">Field measurement logged (JMC)</span><span class="step-arrow">→</span>
+                        <span class="step-chip">PMC + Finance jointly certify</span><span class="step-arrow">→</span>
+                        <span class="step-chip">Finance approves payment</span><span class="step-arrow">→</span>
+                        <span class="step-chip">Contractor ledger updated</span>
+                    </div>
+                </div>
+
+                <div class="flow">
+                    <h4><span class="fn">FLOW 4</span>Compliance expiry → renewal</h4>
+                    <div class="steps">
+                        <span class="step-chip">System tracks ComplianceItem expiry date</span><span
+                            class="step-arrow">→</span>
+                        <span class="step-chip">Advance-notice alert to Site Engineer + PMC</span><span
+                            class="step-arrow">→</span>
+                        <span class="step-chip">Renewed document uploaded</span><span class="step-arrow">→</span>
+                        <span class="step-chip">PMC verifies &amp; updates status</span><span
+                            class="step-arrow">→</span>
+                        <span class="step-chip">Site heat-map cell returns to Green</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="access">
+                <div class="sec-tag">07 — Cross-Reference</div>
+                <h2>Access Control Summary</h2>
+                <p class="lede">Condensed module-level view. The full action-level permission matrix (create / approve /
+                    view per screen) lives in the client-facing scope document — this is the version an architect needs
+                    to design the auth layer.</p>
+                <table class="actors">
+                    <thead>
+                        <tr>
+                            <th>Module</th>
+                            <th>PMC</th>
+                            <th>EPC</th>
+                            <th>Client</th>
+                            <th>Finance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="role">Progress Reporting</td>
+                            <td>Approve, all sites</td>
+                            <td>Submit, own sites</td>
+                            <td>View only</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td class="role">CPM Scheduling</td>
+                            <td>Full edit, all sites</td>
+                            <td>Edit own tasks</td>
+                            <td>View only</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td class="role">Compliance Vault</td>
+                            <td>Full edit, all sites</td>
+                            <td>Edit own sites</td>
+                            <td>View only</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td class="role">Finance Suite</td>
+                            <td>Approve invoices, JMC</td>
+                            <td>Submit bills</td>
+                            <td>—</td>
+                            <td>Full control</td>
+                        </tr>
+                        <tr>
+                            <td class="role">User &amp; Site Admin</td>
+                            <td>Full</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section id="nfr">
+                <div class="sec-tag">08 — Guardrails</div>
+                <h2>Constraints for Architecture</h2>
+                <p class="lede">The handful of non-functional requirements that will actually shape technical decisions,
+                    not the full list.</p>
+                <div class="nfr-grid">
+                    <div class="nfr-card">
+                        <div class="cap">Offline-first mobile</div>
+                        <p>DPR entry must work with zero connectivity and sync later — this drives local storage +
+                            conflict resolution design on the mobile app, not just a "nice to have" sync button.</p>
+                    </div>
+                    <div class="nfr-card">
+                        <div class="cap">RBAC at the API layer</div>
+                        <p>Site-scoping for EPC users must be enforced server-side on every endpoint, not just hidden in
+                            the UI — a leaked EPC login should never expose another contractor's data.</p>
+                    </div>
+                    <div class="nfr-card">
+                        <div class="cap">Geo/time-stamped media</div>
+                        <p>Every photo/video needs GPS + server-verified timestamp captured at upload, with geofence
+                            validation against the site's registered radius.</p>
+                    </div>
+                    <div class="nfr-card">
+                        <div class="cap">Concurrent scale</div>
+                        <p>~150–200 total users across 56 sites and 20 EPCs, with peak concurrent writes during evening
+                            DPR submission windows.</p>
+                    </div>
+                    <div class="nfr-card">
+                        <div class="cap">Financial data integrity</div>
+                        <p>Invoice → JMC → payment must be an auditable, append-only chain — no silent edits to a
+                            certified measurement or an approved invoice.</p>
+                    </div>
+                    <div class="nfr-card">
+                        <div class="cap">Encryption &amp; audit</div>
+                        <p>TLS in transit, encryption at rest for documents and financial records, full audit log on
+                            every write to sensitive entities.</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="doc-footer">
+                <span>INTERNAL DOCUMENT — NOT FOR CLIENT DISTRIBUTION</span>
+                <span>DOC REF: VM-PBR-PMK-ARCH-01 · REV 1.0 · 30 AUG 2026</span>
+            </div>
+
+        </main>
+    </div>
+</body>
+
+</html>

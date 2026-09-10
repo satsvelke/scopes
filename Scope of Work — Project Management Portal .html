@@ -1,0 +1,2286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scope of Work — Project Management Portal &amp; Dashboards | 1,810 MW PM-KUSUM Solar Programme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #101E2C;
+            --blueprint-900: #07213A;
+            --blueprint-800: #0B3355;
+            --blueprint-700: #134268;
+            --blueprint-line: rgba(255, 255, 255, .14);
+            --paper: #FFFFFF;
+            --paper-soft: #EEF3F7;
+            --cyan: #2FB8DF;
+            --solar: #F2994A;
+            --green: #2FAE73;
+            --amber: #E8B93B;
+            --red: #DD4C43;
+            --steel: #5C6E7E;
+            --border: #DAE2E9;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin: 0;
+            letter-spacing: -.01em;
+        }
+
+        .mono {
+            font-family: 'IBM Plex Mono', monospace;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        .wrap {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        img,
+        svg {
+            max-width: 100%;
+        }
+
+        /* ---------- Blueprint grid texture ---------- */
+        .grid-bg {
+            background-image:
+                linear-gradient(var(--blueprint-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px);
+            background-size: 36px 36px;
+        }
+
+        /* ---------- Top bar ---------- */
+        .topbar {
+            background: var(--blueprint-900);
+            color: #DCEAF3;
+            padding: 10px 0;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .06em;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .topbar .wrap {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .topbar .doc-id {
+            color: var(--cyan);
+        }
+
+        .print-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, .35);
+            color: #DCEAF3;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .06em;
+            padding: 6px 12px;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+
+        .print-btn:hover {
+            background: rgba(255, 255, 255, .1);
+        }
+
+        /* ---------- Hero ---------- */
+        .hero {
+            background: radial-gradient(1100px 500px at 15% -10%, #0E3D63 0%, var(--blueprint-900) 55%), var(--blueprint-900);
+            color: #F2F7FA;
+            padding: 64px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .grid-bg {
+            position: absolute;
+            inset: 0;
+            opacity: .55;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        .kicker {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .kicker::before {
+            content: "";
+            width: 26px;
+            height: 1px;
+            background: var(--cyan);
+            display: inline-block;
+        }
+
+        .hero h1 {
+            font-size: 44px;
+            font-weight: 700;
+            max-width: 820px;
+            line-height: 1.12;
+        }
+
+        .hero h1 span {
+            color: var(--solar);
+        }
+
+        .hero p.lede {
+            max-width: 640px;
+            color: #B9CBD8;
+            font-size: 17px;
+            margin-top: 18px;
+        }
+
+        .routing {
+            margin-top: 36px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border-top: 1px solid var(--blueprint-line);
+            border-bottom: 1px solid var(--blueprint-line);
+        }
+
+        .routing div {
+            padding: 16px 22px;
+            border-right: 1px solid var(--blueprint-line);
+        }
+
+        .routing div:last-child {
+            border-right: none;
+        }
+
+        .routing .label {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10.5px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #7C93A4;
+            margin-bottom: 6px;
+        }
+
+        .routing .value {
+            font-size: 14.5px;
+            color: #EAF2F7;
+            font-weight: 500;
+        }
+
+        .routing .value small {
+            display: block;
+            color: #8FA5B4;
+            font-weight: 400;
+            font-size: 12px;
+            margin-top: 2px;
+        }
+
+        /* Dimension-line stat strip */
+        .stat-strip {
+            margin-top: 0;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat {
+            padding: 26px 22px 30px;
+            border-right: 1px solid var(--blueprint-line);
+            position: relative;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat::before {
+            content: "";
+            position: absolute;
+            left: 22px;
+            right: 22px;
+            top: 0;
+            height: 1px;
+            background: var(--cyan);
+            opacity: .5;
+        }
+
+        .stat::after {
+            content: "◂";
+            position: absolute;
+            left: 16px;
+            top: -4px;
+            color: var(--cyan);
+            opacity: .6;
+            font-size: 10px;
+        }
+
+        .stat .num {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #FFFFFF;
+        }
+
+        .stat .num sup {
+            font-size: 14px;
+            color: var(--solar);
+            font-weight: 600;
+            margin-left: 2px;
+        }
+
+        .stat .cap {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: #8FA5B4;
+            margin-top: 6px;
+        }
+
+        /* ---------- Sticky nav ---------- */
+        nav.toc {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(255, 255, 255, .96);
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        nav.toc .wrap {
+            display: flex;
+            gap: 2px;
+            overflow-x: auto;
+            padding: 0;
+        }
+
+        nav.toc a {
+            white-space: nowrap;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11.5px;
+            letter-spacing: .03em;
+            text-decoration: none;
+            color: var(--steel);
+            padding: 14px 14px;
+            border-bottom: 2px solid transparent;
+        }
+
+        nav.toc a:hover {
+            color: var(--blueprint-800);
+            border-bottom-color: var(--solar);
+        }
+
+        /* ---------- Sections ---------- */
+        section {
+            padding: 72px 0;
+            scroll-margin-top: 52px;
+        }
+
+        section.alt {
+            background: var(--paper-soft);
+        }
+
+        .sec-head {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .sec-num {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 13px;
+            color: var(--solar);
+            letter-spacing: .05em;
+        }
+
+        .sec-head h2 {
+            font-size: 28px;
+            color: var(--blueprint-900);
+        }
+
+        .sec-rule {
+            height: 1px;
+            background: var(--border);
+            margin: 20px 0 40px;
+        }
+
+        .sec-intro {
+            max-width: 760px;
+            color: var(--steel);
+            font-size: 15.5px;
+            margin-bottom: 8px;
+        }
+
+        /* Executive summary */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr;
+            gap: 48px;
+            align-items: start;
+        }
+
+        .summary-grid p {
+            color: var(--ink);
+            font-size: 15.5px;
+        }
+
+        .callout {
+            background: var(--blueprint-900);
+            color: #EAF2F7;
+            border-radius: 4px;
+            padding: 26px 26px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .callout::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(var(--blueprint-line) 1px, transparent 1px), linear-gradient(90deg, var(--blueprint-line) 1px, transparent 1px);
+            background-size: 22px 22px;
+            opacity: .5;
+        }
+
+        .callout>* {
+            position: relative;
+            z-index: 1;
+        }
+
+        .callout .cap {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--cyan);
+            margin-bottom: 10px;
+        }
+
+        .callout ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 14.5px;
+            color: #D3E2EB;
+        }
+
+        .callout li {
+            margin-bottom: 8px;
+        }
+
+        /* Hierarchy / signature diagram */
+        .hierarchy {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 40px 30px 30px;
+            background:
+                linear-gradient(var(--border) 1px, transparent 1px),
+                linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 24px 24px;
+            background-color: #FCFDFE;
+        }
+
+        .hlevel {
+            display: flex;
+            align-items: stretch;
+            gap: 0;
+            margin-bottom: 0;
+        }
+
+        .hbox {
+            border: 1.5px solid var(--blueprint-800);
+            background: #fff;
+            border-radius: 3px;
+            padding: 14px 18px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .hbox .n {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: var(--blueprint-900);
+        }
+
+        .hbox .t {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10.5px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--steel);
+            margin-top: 3px;
+        }
+
+        .hconnector {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .hconnector .dim {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10.5px;
+            color: var(--cyan);
+            background: #fff;
+            padding: 2px 8px;
+            border: 1px solid var(--cyan);
+            border-radius: 10px;
+        }
+
+        .hrow-l1 {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hrow-l1 .hbox {
+            max-width: 280px;
+            border-color: var(--solar);
+            background: #FFF7EF;
+        }
+
+        .hrow-l1 .hbox .n {
+            color: var(--solar);
+        }
+
+        .hrow-l2 {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .hrow-l2 .hbox {
+            padding: 10px 6px;
+        }
+
+        .hrow-l2 .hbox .n {
+            font-size: 15px;
+        }
+
+        .hrow-l2 .more {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--steel);
+            border: 1.5px dashed var(--border);
+            border-radius: 3px;
+        }
+
+        .hrow-l3 {
+            display: grid;
+            grid-template-columns: repeat(8, 1fr);
+            gap: 8px;
+        }
+
+        .hrow-l3 .hbox {
+            padding: 8px 4px;
+            border-width: 1px;
+        }
+
+        .hrow-l3 .hbox .n {
+            font-size: 12.5px;
+        }
+
+        .hrow-l3 .hbox .t {
+            font-size: 8.5px;
+        }
+
+        .hrow-l4 {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 6px;
+        }
+
+        .hrow-l4 .hbox {
+            padding: 6px 2px;
+            border-width: 1px;
+            border-style: dashed;
+        }
+
+        .hrow-l4 .hbox .n {
+            font-size: 11px;
+        }
+
+        .hrow-l4 .hbox .t {
+            display: none;
+        }
+
+        /* Module cards */
+        .module {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 22px;
+            overflow: hidden;
+        }
+
+        .module-head {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--blueprint-900);
+            color: #fff;
+            padding: 16px 22px;
+        }
+
+        .module-head .tag {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            letter-spacing: .05em;
+            background: var(--solar);
+            color: #241001;
+            padding: 3px 9px;
+            border-radius: 2px;
+            font-weight: 600;
+        }
+
+        .module-head h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .module-body {
+            padding: 22px 22px 8px;
+            background: #fff;
+        }
+
+        .subfeat {
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+        }
+
+        .subfeat:last-child {
+            border-bottom: none;
+        }
+
+        .subfeat h4 {
+            font-size: 14.5px;
+            color: var(--blueprint-900);
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+        }
+
+        .subfeat h4 .idx {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--cyan);
+            font-size: 12.5px;
+        }
+
+        .subfeat ul {
+            margin: 10px 0 0;
+            padding-left: 20px;
+            color: var(--steel);
+            font-size: 14px;
+        }
+
+        .subfeat li {
+            margin-bottom: 5px;
+        }
+
+        /* Dashboard cards */
+        .dash-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .dash-card {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dash-card .dh {
+            padding: 16px 16px 12px;
+            color: #fff;
+        }
+
+        .dash-card.pmc .dh {
+            background: var(--blueprint-800);
+        }
+
+        .dash-card.epc .dh {
+            background: #1F6E5C;
+        }
+
+        .dash-card.client .dh {
+            background: #5B4B9C;
+        }
+
+        .dash-card.finance .dh {
+            background: #A65B1F;
+        }
+
+        .dash-card .dh .role {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            opacity: .85;
+        }
+
+        .dash-card .dh h4 {
+            font-size: 15.5px;
+            margin-top: 4px;
+            color: #fff;
+        }
+
+        .dash-card .db {
+            padding: 16px;
+            flex: 1;
+        }
+
+        .dash-card .db p.access {
+            font-size: 12.5px;
+            color: var(--steel);
+            margin-bottom: 10px;
+            font-style: italic;
+        }
+
+        .dash-card ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 13px;
+            color: var(--ink);
+        }
+
+        .dash-card li {
+            margin-bottom: 6px;
+        }
+
+        /* Permission matrix */
+        table.matrix {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        table.matrix th,
+        table.matrix td {
+            border: 1px solid var(--border);
+            padding: 9px 10px;
+            text-align: center;
+        }
+
+        table.matrix th {
+            background: var(--blueprint-900);
+            color: #fff;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 500;
+            font-size: 11px;
+            letter-spacing: .03em;
+        }
+
+        table.matrix td:first-child,
+        table.matrix th:first-child {
+            text-align: left;
+            font-weight: 500;
+        }
+
+        table.matrix td:first-child {
+            background: var(--paper-soft);
+        }
+
+        .perm-full {
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        .perm-partial {
+            color: var(--amber);
+            font-weight: 700;
+        }
+
+        .perm-view {
+            color: var(--cyan);
+            font-weight: 700;
+        }
+
+        .perm-none {
+            color: #C7CFD6;
+        }
+
+        .legend {
+            display: flex;
+            gap: 22px;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .legend span {
+            font-size: 12.5px;
+            color: var(--steel);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Cross-cutting grid */
+        .cc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .cc-card {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 20px 22px;
+            background: #fff;
+        }
+
+        .cc-card h4 {
+            font-size: 15px;
+            color: var(--blueprint-900);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cc-card .ic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--paper-soft);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 12px;
+            color: var(--blueprint-800);
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+        }
+
+        .cc-card ul {
+            margin: 12px 0 0;
+            padding-left: 18px;
+            color: var(--steel);
+            font-size: 13.5px;
+        }
+
+        .cc-card li {
+            margin-bottom: 6px;
+        }
+
+        /* Stack */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .stack-card {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 18px 20px;
+            background: #fff;
+        }
+
+        .stack-card .cap {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10.5px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--solar);
+            margin-bottom: 8px;
+        }
+
+        .stack-card h4 {
+            font-size: 15px;
+            color: var(--blueprint-900);
+            margin-bottom: 8px;
+        }
+
+        .stack-card ul {
+            margin: 0;
+            padding-left: 16px;
+            font-size: 13.5px;
+            color: var(--steel);
+        }
+
+        .stack-card li {
+            margin-bottom: 5px;
+        }
+
+        /* wireframe */
+        .wireframe {
+            border: 1.5px dashed var(--blueprint-700);
+            border-radius: 4px;
+            padding: 18px;
+            background: #FCFDFE;
+        }
+
+        .wf-topbar {
+            height: 26px;
+            background: var(--blueprint-900);
+            border-radius: 2px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            gap: 6px;
+        }
+
+        .wf-topbar span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, .4);
+        }
+
+        .wf-body {
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 10px;
+        }
+
+        .wf-side {
+            background: var(--paper-soft);
+            border: 1px dashed var(--border);
+            border-radius: 2px;
+            padding: 10px;
+        }
+
+        .wf-side .item {
+            height: 10px;
+            background: var(--border);
+            border-radius: 2px;
+            margin-bottom: 10px;
+        }
+
+        .wf-main {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        .wf-kpi {
+            background: var(--paper-soft);
+            border: 1px dashed var(--border);
+            border-radius: 2px;
+            height: 46px;
+        }
+
+        .wf-chart {
+            grid-column: span 2;
+            background: var(--paper-soft);
+            border: 1px dashed var(--border);
+            border-radius: 2px;
+            height: 110px;
+        }
+
+        .wf-list {
+            grid-column: span 2;
+            background: var(--paper-soft);
+            border: 1px dashed var(--border);
+            border-radius: 2px;
+            height: 110px;
+        }
+
+        .wf-map {
+            grid-column: span 4;
+            background: var(--paper-soft);
+            border: 1px dashed var(--border);
+            border-radius: 2px;
+            height: 90px;
+        }
+
+        .wf-caption {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10.5px;
+            color: var(--steel);
+            text-align: center;
+            margin-top: 10px;
+            letter-spacing: .03em;
+        }
+
+        /* Roadmap gantt */
+        .roadmap {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 26px 26px 20px;
+            overflow-x: auto;
+        }
+
+        .ruler {
+            display: grid;
+            grid-template-columns: repeat(31, 1fr);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 8px;
+            margin-bottom: 14px;
+            min-width: 900px;
+        }
+
+        .ruler .tick {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 9.5px;
+            color: var(--steel);
+            text-align: left;
+            border-left: 1px solid var(--border);
+            padding-left: 3px;
+        }
+
+        .ruler .tick.major {
+            color: var(--blueprint-900);
+            font-weight: 600;
+        }
+
+        .gbar-row {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 12px;
+            min-width: 900px;
+        }
+
+        .gbar-label {
+            width: 230px;
+            flex-shrink: 0;
+            font-size: 13px;
+            color: var(--ink);
+        }
+
+        .gbar-label .wk {
+            display: block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10.5px;
+            color: var(--steel);
+            margin-top: 2px;
+        }
+
+        .gbar-track {
+            position: relative;
+            flex: 1;
+            height: 22px;
+            background: var(--paper-soft);
+            border-radius: 3px;
+        }
+
+        .gbar {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            padding-left: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 10px;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        /* team */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+        }
+
+        .team-card {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 16px;
+            text-align: center;
+            background: #fff;
+        }
+
+        .team-card .role {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--blueprint-900);
+        }
+
+        .team-card .n {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 11px;
+            color: var(--solar);
+            margin-top: 4px;
+        }
+
+        /* assumptions */
+        .assump-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .assump-cols h4 {
+            font-size: 14.5px;
+            color: var(--blueprint-900);
+            margin-bottom: 10px;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .assump-cols ul {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 13.5px;
+            color: var(--steel);
+        }
+
+        .assump-cols li {
+            margin-bottom: 9px;
+        }
+
+        /* footer / next steps */
+        footer {
+            background: var(--blueprint-900);
+            color: #DCEAF3;
+            padding: 56px 0 30px;
+        }
+
+        .next-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin: 30px 0 40px;
+        }
+
+        .step {
+            border: 1px solid var(--blueprint-line);
+            border-radius: 4px;
+            padding: 18px;
+        }
+
+        .step .sn {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--solar);
+            font-size: 12px;
+        }
+
+        .step h4 {
+            color: #fff;
+            font-size: 14.5px;
+            margin-top: 8px;
+        }
+
+        .step p {
+            color: #9FB4C3;
+            font-size: 12.5px;
+            margin-top: 6px;
+        }
+
+        .foot-bottom {
+            border-top: 1px solid var(--blueprint-line);
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #7C93A4;
+            font-family: 'IBM Plex Mono', monospace;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .note {
+            font-size: 12.5px;
+            color: var(--steel);
+            background: var(--paper-soft);
+            border-left: 3px solid var(--solar);
+            padding: 10px 14px;
+            border-radius: 2px;
+            margin-top: 14px;
+        }
+
+        @media (max-width: 980px) {
+
+            .summary-grid,
+            .cc-grid,
+            .stack-grid,
+            .assump-cols,
+            .dash-grid,
+            .team-grid,
+            .next-steps {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .dash-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .routing {
+                grid-template-columns: 1fr;
+            }
+
+            .routing div {
+                border-right: none;
+                border-bottom: 1px solid var(--blueprint-line);
+            }
+
+            .stat-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hrow-l2 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .hrow-l3 {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .hrow-l4 {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (max-width:640px) {
+
+            .summary-grid,
+            .cc-grid,
+            .stack-grid,
+            .assump-cols,
+            .dash-grid,
+            .team-grid,
+            .next-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .wrap {
+                padding: 0 18px;
+            }
+
+            .wf-body {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media print {
+
+            nav.toc,
+            .print-btn,
+            .topbar {
+                display: none;
+            }
+
+            section {
+                padding: 24px 0;
+                break-inside: avoid;
+            }
+
+            .hero {
+                padding: 24px 0;
+            }
+
+            body {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="topbar">
+        <div class="wrap">
+            <span>VISHUDDHA MEDIA PRIVATE LIMITED — TECHNOLOGY PROPOSAL</span>
+            <span class="doc-id">DOC REF: VM-PBR-PMK-SOW-01 · REV 1.0 · 30 AUG 2026</span>
+            <button class="print-btn" onclick="window.print()">↓ EXPORT / PRINT</button>
+        </div>
+    </div>
+
+    <header class="hero">
+        <div class="grid-bg"></div>
+        <div class="wrap hero-inner">
+            <div class="kicker">Detailed Scope of Work &amp; Solution Blueprint</div>
+            <h1>Project Management Portal &amp; Dashboards for the <span>1,810&nbsp;MW</span> PM‑KUSUM Solar Programme
+            </h1>
+            <p class="lede">A single source of truth for real-time progress tracking, CPM scheduling, compliance and
+                financial monitoring across 14 districts, 56 sites and 20 EPC contractors — proposed by Vishuddha Media
+                Private Limited for PBR Enterprises and Balaji Human Safety.</p>
+
+            <div class="routing">
+                <div>
+                    <div class="label">Prepared For</div>
+                    <div class="value">PBR Enterprises <small>Project Management Consultant (PMC)</small></div>
+                </div>
+                <div>
+                    <div class="label">End Client</div>
+                    <div class="value">Balaji Human Safety <small>Main EPC Contractor · MAHAGENCO / Govt. of
+                            Maharashtra</small></div>
+                </div>
+                <div>
+                    <div class="label">Prepared By</div>
+                    <div class="value">Vishuddha Media Private Limited <small>Software Development Agency</small></div>
+                </div>
+            </div>
+
+            <div class="stat-strip grid-bg">
+                <div class="stat">
+                    <div class="num">1,810<sup>MW</sup></div>
+                    <div class="cap">Total Capacity</div>
+                </div>
+                <div class="stat">
+                    <div class="num">14</div>
+                    <div class="cap">Districts, Maharashtra</div>
+                </div>
+                <div class="stat">
+                    <div class="num">56</div>
+                    <div class="cap">Site Locations</div>
+                </div>
+                <div class="stat">
+                    <div class="num">20</div>
+                    <div class="cap">EPC Sub‑Contractors</div>
+                </div>
+                <div class="stat">
+                    <div class="num">4</div>
+                    <div class="cap">Role‑Based Dashboards</div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="toc">
+        <div class="wrap">
+            <a href="#summary">01 · Summary</a>
+            <a href="#scale">02 · Scale</a>
+            <a href="#scope">03 · Functional Scope</a>
+            <a href="#dashboards">04 · Dashboards &amp; RBAC</a>
+            <a href="#technical">05 · Technical Reqs</a>
+            <a href="#stack">06 · Technology Stack</a>
+            <a href="#ux">07 · UI/UX Approach</a>
+            <a href="#roadmap">08 · Delivery Roadmap</a>
+            <a href="#team">09 · Project Team</a>
+            <a href="#assumptions">10 · Assumptions</a>
+            <a href="#next">11 · Next Steps</a>
+        </div>
+    </nav>
+
+    <!-- 01 EXECUTIVE SUMMARY -->
+    <section id="summary">
+        <div class="wrap">
+            <div class="sec-head"><span class="sec-num">SEC. 01</span>
+                <h2>Executive Summary &amp; Our Understanding</h2>
+            </div>
+            <div class="sec-rule"></div>
+            <div class="summary-grid">
+                <div>
+                    <p>Balaji Human Safety has been awarded a 1,810 MW decentralized solar power programme under the
+                        Government of Maharashtra's PM‑KUSUM scheme, spanning 14 districts and 56 individual site
+                        locations, executed through 20 EPC sub‑contractors and overseen by PBR Enterprises as Project
+                        Management Consultant.</p>
+                    <p>The scale and distributed nature of this programme — dozens of concurrent construction fronts,
+                        multiple government clearances per site, milestone‑linked payments, and a hard Commercial
+                        Operation Date — cannot be reliably governed through spreadsheets and WhatsApp updates. It
+                        requires a single cloud platform that gives every stakeholder, from a site engineer to a
+                        government‑facing executive, the exact slice of real‑time truth they need.</p>
+                    <p>This document is our detailed, ready‑to‑execute scope of work. It translates your concept note
+                        into concrete modules, screens, data fields, workflows, and a delivery plan — engineered
+                        specifically around four functional pillars (Progress Reporting, CPM Scheduling, Technical &amp;
+                        Compliance, Finance &amp; Accounts) and four role‑based dashboards (PMC, EPC, Main Contractor,
+                        Finance).</p>
+                    <p>Nothing in the concept note has been left unaddressed; where the brief implied a need without
+                        spelling out the mechanics — approval workflows, audit trails, escalation logic, offline sync —
+                        we have made it explicit below so it can be reviewed, sized, and signed off in one pass.</p>
+                </div>
+                <div class="callout">
+                    <div class="cap">Read this first</div>
+                    <ul>
+                        <li>4 functional modules, fully broken down to field- and workflow-level detail — Section 03.
+                        </li>
+                        <li>4 dashboards with a full permission matrix so access control is unambiguous — Section 04.
+                        </li>
+                        <li>A proposed technology stack matched to field connectivity and security needs — Section 06.
+                        </li>
+                        <li>An indicative MVP‑to‑Go‑Live roadmap, phased for an early pilot — Section 08.</li>
+                        <li>Assumptions, dependencies and exclusions stated up front — Section 10.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02 SCALE / HIERARCHY -->
+    <section id="scale" class="alt">
+        <div class="wrap">
+            <div class="sec-head"><span class="sec-num">SEC. 02</span>
+                <h2>Project Scale &amp; Spatial Hierarchy</h2>
+            </div>
+            <p class="sec-intro">The platform's entire data model is built around one non‑negotiable structural rule
+                from the concept note: every record — a DPR, a milestone, an invoice, a compliance certificate — must
+                roll up cleanly through four levels, from a single site to the 1,810&nbsp;MW consolidated view.</p>
+            <div class="sec-rule"></div>
+
+            <div class="hierarchy">
+                <div class="hrow-l1">
+                    <div class="hbox">
+                        <div class="n">1,810 MW</div>
+                        <div class="t">Level 1 — Total Programme</div>
+                    </div>
+                </div>
+                <div class="hconnector"><span class="dim">↓ split by district</span></div>
+                <div class="hrow-l2">
+                    <div class="hbox">
+                        <div class="n">D‑01</div>
+                        <div class="t">District</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">D‑02</div>
+                        <div class="t">District</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">D‑03</div>
+                        <div class="t">District</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">D‑04</div>
+                        <div class="t">District</div>
+                    </div>
+                    <div class="more">+10 more<br>(14 total)</div>
+                </div>
+                <div class="hconnector"><span class="dim">↓ split by site</span></div>
+                <div class="hrow-l3">
+                    <div class="hbox">
+                        <div class="n">S‑01</div>
+                        <div class="t">Site</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">S‑02</div>
+                        <div class="t">Site</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">S‑03</div>
+                        <div class="t">Site</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">S‑04</div>
+                        <div class="t">Site</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">S‑05</div>
+                        <div class="t">Site</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">S‑06</div>
+                        <div class="t">Site</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">S‑07</div>
+                        <div class="t">Site</div>
+                    </div>
+                    <div class="more">+49 more<br>(56 total)</div>
+                </div>
+                <div class="hconnector"><span class="dim">↓ mapped to contractor</span></div>
+                <div class="hrow-l4">
+                    <div class="hbox">
+                        <div class="n">EPC‑01</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">EPC‑02</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">EPC‑03</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">EPC‑04</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">EPC‑05</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">EPC‑06</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">EPC‑07</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">EPC‑08</div>
+                    </div>
+                    <div class="hbox">
+                        <div class="n">EPC‑09</div>
+                    </div>
+                    <div class="more">+11 more<br>(20 total)</div>
+                </div>
+            </div>
+            <div class="note">Every module below — DPR, Gantt/CPM, compliance checklist, invoicing — is filterable and
+                roll‑up‑able at all four levels, so a district health score, for instance, is always a live aggregation
+                of its underlying sites, never a manually re‑typed number.</div>
+        </div>
+    </section>
+
+    <!-- 03 FUNCTIONAL SCOPE -->
+    <section id="scope">
+        <div class="wrap">
+            <div class="sec-head"><span class="sec-num">SEC. 03</span>
+                <h2>Detailed Functional Scope</h2>
+            </div>
+            <p class="sec-intro">Four functional modules, each expanded from the concept note into the specific screens,
+                fields, and workflow states required to build and test it without further back‑and‑forth.</p>
+            <div class="sec-rule"></div>
+
+            <!-- MODULE A -->
+            <div class="module">
+                <div class="module-head"><span class="tag">MOD A</span>
+                    <h3>Progress Reporting &amp; Documentation</h3>
+                </div>
+                <div class="module-body">
+                    <div class="subfeat">
+                        <h4><span class="idx">A.1</span> Daily Progress Report (DPR)</h4>
+                        <ul>
+                            <li>Structured, mandatory daily entry per site: piles driven, structures erected, modules
+                                mounted, cable trenching (RM), earthing &amp; cabling status, labour headcount by trade
+                                (skilled / unskilled / supervisory), machinery deployed and idle‑hours, local weather
+                                and hours lost to it, material received, and safety observations or incidents.</li>
+                            <li>Photo and video upload against each activity line, geo‑ and time‑stamped at capture (see
+                                Section 05).</li>
+                            <li>Configurable reminder notifications to site engineers for same‑day submission, with a
+                                missed‑DPR flag visible to the PMC.</li>
+                            <li>Offline‑first form so entries made without network coverage are saved locally and synced
+                                automatically once connectivity resumes.</li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">A.2</span> Weekly &amp; Monthly Progress Reports (WPR / MPR)</h4>
+                        <ul>
+                            <li>Automatic roll‑up of DPR data by week and month, at site, district, contractor and
+                                programme level — no manual re‑entry.</li>
+                            <li>Consolidated photo/video gallery per reporting period, with planned‑vs‑actual progress
+                                percentage displayed alongside.</li>
+                            <li>One‑click generation of a formatted, exportable WPR/MPR document ready for circulation.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">A.3</span> Quarterly Milestone Audits</h4>
+                        <ul>
+                            <li>Executive summary view comparing planned vs. actual progress across all levels of the
+                                hierarchy for the quarter.</li>
+                            <li>Variance and deviation analysis with a corrective‑action tracker: owner, target date,
+                                and closure status per open item.</li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">A.4</span> Review &amp; Approval Workflow</h4>
+                        <ul>
+                            <li>Every DPR/WPR passes through Submit → PMC Review → Approve / Reject /
+                                Return‑for‑Correction → Resubmit, with a visible status and full revision history.</li>
+                            <li>Comment threads attached to each submission; configurable SLA timers that escalate a
+                                report sitting in "pending review" beyond a set number of days.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE B -->
+            <div class="module">
+                <div class="module-head"><span class="tag">MOD B</span>
+                    <h3>CPM Scheduling &amp; Monitoring Engine</h3>
+                </div>
+                <div class="module-body">
+                    <div class="subfeat">
+                        <h4><span class="idx">B.1</span> Interactive Gantt Chart</h4>
+                        <ul>
+                            <li>Task and sub‑task hierarchy per site following the standard build sequence: site
+                                mobilization → civil works → structure mounting → module installation →
+                                inverter/transformer installation &amp; testing → grid synchronisation → COD.</li>
+                            <li>Task dependencies (finish‑to‑start and others), durations, and resource assignments;
+                                drag‑and‑drop rescheduling that automatically shifts dependent tasks.</li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">B.2</span> Critical Path &amp; Early Warning System</h4>
+                        <ul>
+                            <li>Automatic critical‑path calculation and visual highlighting across the full 56‑site
+                                network, rolling up to a single programme‑level critical path to COD.</li>
+                            <li>Configurable delay thresholds (e.g. &gt;3 days slip on a critical task) trigger
+                                multi‑channel alerts — in‑app, email, and SMS/WhatsApp — with an escalation matrix from
+                                Site Engineer → EPC PM → PMC → Client based on severity and duration.</li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">B.3</span> Baseline vs. Actual Tracking</h4>
+                        <ul>
+                            <li>Baseline schedule locked per milestone, with version‑controlled, approval‑gated
+                                re‑baselining when scope genuinely changes.</li>
+                            <li>Schedule variance reporting per site, district and programme, so a delayed critical task
+                                is traceable to its exact origin.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE C -->
+            <div class="module">
+                <div class="module-head"><span class="tag">MOD C</span>
+                    <h3>Technical &amp; Compliance Vault</h3>
+                </div>
+                <div class="module-body">
+                    <div class="subfeat">
+                        <h4><span class="idx">C.1</span> Approved Vendor List (AVL) &amp; Spec Compatibility</h4>
+                        <ul>
+                            <li>Master AVL database (module make and efficiency rating, inverter make and capacity,
+                                structure vendor, cabling specification, etc.).</li>
+                            <li>Automatic check‑and‑balance validation whenever a site engineer logs material used, with
+                                non‑conformance flagged to the PMC instantly rather than at the next audit.</li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">C.2</span> Document &amp; Drawing Repository</h4>
+                        <ul>
+                            <li>Version‑controlled central vault for drawings, single‑line diagrams, test certificates
+                                and datasheets, tagged by site and discipline with full‑text search.</li>
+                            <li>Access restricted by role, so an EPC only sees documents relevant to its assigned sites.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">C.3</span> Government &amp; Regulatory Compliance Checklist</h4>
+                        <ul>
+                            <li>Per‑site checklist tracking land approvals, MSEDCL/MAHAGENCO clearances, CEIG safety
+                                certification, and net‑metering registration status.</li>
+                            <li>Expiry and renewal tracking with advance‑notice alerts, rolling up into a
+                                Red/Amber/Green compliance heat‑map per site and district.</li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">C.4</span> Quality &amp; Inspection Reports</h4>
+                        <ul>
+                            <li>Digitised QA/QC checklists and test‑report uploads (module flash test, cable insulation,
+                                earthing resistance, etc.).</li>
+                            <li>Non‑Conformance Report (NCR) tracker with an owner and a closure workflow, mirroring the
+                                DPR approval pattern for consistency.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- MODULE D -->
+            <div class="module">
+                <div class="module-head"><span class="tag">MOD D</span>
+                    <h3>Financial &amp; Accounts Suite</h3>
+                </div>
+                <div class="module-body">
+                    <div class="subfeat">
+                        <h4><span class="idx">D.1</span> Milestone‑Based Invoicing</h4>
+                        <ul>
+                            <li>Billing triggered strictly against verified physical completion percentage per
+                                milestone, with a Running Account (RA) bill submission portal for each EPC.</li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">D.2</span> Joint Measurement Certification (JMC)</h4>
+                        <ul>
+                            <li>Field measurement entry → PMC joint verification → certification, with the certified JMC
+                                linked directly to invoice release so payment always matches verified physical work.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">D.3</span> Contractor Ledger</h4>
+                        <ul>
+                            <li>Advance payment tracking, retention‑money accounting, and automatic penalty /
+                                liquidated‑damages computation for delays against the CPM baseline.</li>
+                            <li>Vendor‑ and contractor‑wise running ledger statement, exportable on demand.</li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">D.4</span> GST &amp; Tax Compliance Tracking</h4>
+                        <ul>
+                            <li>Per‑site and per‑invoice GST tracking with a live tax‑compliance status dashboard.</li>
+                        </ul>
+                    </div>
+                    <div class="subfeat">
+                        <h4><span class="idx">D.5</span> Budget vs. Actual &amp; Financial MIS</h4>
+                        <ul>
+                            <li>Consolidated budget utilisation (committed vs. spent vs. balance) at project, district
+                                and site level, exportable as management‑ and government‑ready MIS reports.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- 04 DASHBOARDS -->
+    <section id="dashboards" class="alt">
+        <div class="wrap">
+            <div class="sec-head"><span class="sec-num">SEC. 04</span>
+                <h2>Dashboards &amp; Role‑Based Access Control</h2>
+            </div>
+            <p class="sec-intro">One central database, four purpose‑built views. Each dashboard exposes exactly the KPIs
+                and actions its role needs — and nothing more — enforced at the API layer, not just hidden in the UI.
+            </p>
+            <div class="sec-rule"></div>
+
+            <div class="dash-grid">
+                <div class="dash-card pmc">
+                    <div class="dh">
+                        <div class="role">PMC — Control Room</div>
+                        <h4>PBR Enterprises</h4>
+                    </div>
+                    <div class="db">
+                        <p class="access">Full edit, review and approval control across all 56 sites.</p>
+                        <ul>
+                            <li>Cross‑contractor performance benchmarking (top‑performing vs. delayed)</li>
+                            <li>Red / Amber / Green health indicator per district against CPM baseline</li>
+                            <li>DPR/WPR approve‑or‑reject workflow tools</li>
+                            <li>System‑wide audit log of every update</li>
+                            <li>Document management &amp; client‑facing report builder</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dash-card epc">
+                    <div class="dh">
+                        <div class="role">EPC — Field Execution</div>
+                        <h4>20 Individual Logins</h4>
+                    </div>
+                    <div class="db">
+                        <p class="access">Strictly ring‑fenced to each contractor's own assigned sites only.</p>
+                        <ul>
+                            <li>Mobile‑responsive daily data entry screens</li>
+                            <li>Material request log &amp; bottleneck / Right‑of‑Way issue reporting to PMC</li>
+                            <li>Weekly milestone target tracker</li>
+                            <li>RA bill submission &amp; quality test report upload</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dash-card client">
+                    <div class="dh">
+                        <div class="role">Main Contractor — Executive Cockpit</div>
+                        <h4>Balaji Human Safety</h4>
+                    </div>
+                    <div class="db">
+                        <p class="access">Full read‑only global access with macro‑level analytics.</p>
+                        <ul>
+                            <li>High‑level KPIs, e.g. "450 MW of 1,810 MW commissioned"</li>
+                            <li>Money spent vs. budget vs. physical work completed</li>
+                            <li>Exportable PDF report builder for government submissions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dash-card finance">
+                    <div class="dh">
+                        <div class="role">Finance &amp; Accounts — Treasury Desk</div>
+                        <h4>Balaji &amp; PBR Accounts Teams</h4>
+                    </div>
+                    <div class="db">
+                        <p class="access">Restricted to authorised accounts personnel only.</p>
+                        <ul>
+                            <li>JMC approval workflow (physical work vs. invoice match)</li>
+                            <li>GST tracking per location &amp; mobilisation advance tracker</li>
+                            <li>Contractor ledger, retention and penalty accounting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="margin-top:44px; margin-bottom:14px; font-size:18px; color:var(--blueprint-900);">Permission
+                Matrix</h3>
+            <table class="matrix">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>PMC</th>
+                        <th>EPC</th>
+                        <th>Main Contractor</th>
+                        <th>Finance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>DPR submission</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-none">—</td>
+                    </tr>
+                    <tr>
+                        <td>DPR / WPR approval</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-view">View</td>
+                        <td class="perm-none">—</td>
+                    </tr>
+                    <tr>
+                        <td>Gantt / CPM — edit</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-partial">Own tasks</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-none">—</td>
+                    </tr>
+                    <tr>
+                        <td>Gantt / CPM — view</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-partial">Own sites</td>
+                        <td class="perm-view">View</td>
+                        <td class="perm-none">—</td>
+                    </tr>
+                    <tr>
+                        <td>AVL &amp; spec management</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-view">View</td>
+                        <td class="perm-view">View</td>
+                        <td class="perm-none">—</td>
+                    </tr>
+                    <tr>
+                        <td>Compliance checklist update</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-partial">Own sites</td>
+                        <td class="perm-view">View</td>
+                        <td class="perm-none">—</td>
+                    </tr>
+                    <tr>
+                        <td>Document upload</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-partial">Own sites</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-none">—</td>
+                    </tr>
+                    <tr>
+                        <td>RA bill / invoice submission</td>
+                        <td class="perm-view">View</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-view">View</td>
+                    </tr>
+                    <tr>
+                        <td>JMC certification</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-full">Full</td>
+                    </tr>
+                    <tr>
+                        <td>Payment approval</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-partial">Sign‑off</td>
+                        <td class="perm-full">Full</td>
+                    </tr>
+                    <tr>
+                        <td>Ledger / GST management</td>
+                        <td class="perm-view">View</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-full">Full</td>
+                    </tr>
+                    <tr>
+                        <td>User management</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-none">—</td>
+                    </tr>
+                    <tr>
+                        <td>Audit log access</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-none">—</td>
+                        <td class="perm-view">View</td>
+                        <td class="perm-view">View</td>
+                    </tr>
+                    <tr>
+                        <td>PDF / MIS report export</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-partial">Own sites</td>
+                        <td class="perm-full">Full</td>
+                        <td class="perm-full">Full</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="legend">
+                <span><span class="dot" style="background:var(--green);"></span>Full — create, edit &amp; approve</span>
+                <span><span class="dot" style="background:var(--amber);"></span>Partial — scoped to own site(s) /
+                    sign-off only</span>
+                <span><span class="dot" style="background:var(--cyan);"></span>View only</span>
+                <span><span class="dot" style="background:#C7CFD6;"></span>No access</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05 CROSS-CUTTING -->
+    <section id="technical">
+        <div class="wrap">
+            <div class="sec-head"><span class="sec-num">SEC. 05</span>
+                <h2>Cross‑Cutting Technical Requirements</h2>
+            </div>
+            <p class="sec-intro">Requirements that apply across every module rather than sitting inside one — the
+                platform's field‑readiness, integrity, and security posture.</p>
+            <div class="sec-rule"></div>
+
+            <div class="cc-grid">
+                <div class="cc-card">
+                    <h4><span class="ic">01</span>Mobile‑First / Field Optimisation</h4>
+                    <ul>
+                        <li>Portal must load usably on 3G/4G at remote sites, with an app‑shell architecture and
+                            aggressive asset compression</li>
+                        <li>Offline‑save capability for DPR forms with automatic background sync on reconnect</li>
+                        <li>Conflict resolution for entries edited offline on more than one device</li>
+                    </ul>
+                </div>
+                <div class="cc-card">
+                    <h4><span class="ic">02</span>Geofencing &amp; Media Authentication</h4>
+                    <ul>
+                        <li>Every site photo/video upload captures GPS coordinates and a server‑verified timestamp at
+                            point of capture</li>
+                        <li>Geofence validation flags a photo taken outside the registered site radius, reducing
+                            fraudulent reporting</li>
+                        <li>Immutable audit trail linking each media file to the submitting user and device</li>
+                    </ul>
+                </div>
+                <div class="cc-card">
+                    <h4><span class="ic">03</span>Security</h4>
+                    <ul>
+                        <li>SSL/TLS in transit; AES‑256 encryption at rest for all documents and financial data</li>
+                        <li>OAuth2 / JWT‑based authentication, with RBAC enforced at the API layer — never in the UI
+                            alone</li>
+                        <li>Full audit logging of reads and writes on sensitive records (financial, compliance)</li>
+                    </ul>
+                </div>
+                <div class="cc-card">
+                    <h4><span class="ic">04</span>Notifications &amp; Alerting</h4>
+                    <ul>
+                        <li>Multi‑channel delivery — in‑app, email, and SMS/WhatsApp Business API — for approvals, delay
+                            alerts and compliance expiries</li>
+                        <li>User‑configurable notification preferences per role</li>
+                    </ul>
+                </div>
+                <div class="cc-card">
+                    <h4><span class="ic">05</span>Scalability &amp; Reliability</h4>
+                    <ul>
+                        <li>Cloud‑hosted, horizontally scalable to concurrent usage from 20 EPC teams and 56 sites
+                            without degraded field‑app performance</li>
+                        <li>Automated daily backups with a defined recovery‑point objective for disaster recovery</li>
+                    </ul>
+                </div>
+                <div class="cc-card">
+                    <h4><span class="ic">06</span>Reporting &amp; Data Portability</h4>
+                    <ul>
+                        <li>Exportable PDF/Excel reports at every level of the hierarchy for government and internal
+                            circulation</li>
+                        <li>Structured data export (CSV/API) so historical data is never locked into the platform</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06 STACK -->
+    <section id="stack" class="alt">
+        <div class="wrap">
+            <div class="sec-head"><span class="sec-num">SEC. 06</span>
+                <h2>Proposed Technology Stack</h2>
+            </div>
+            <p class="sec-intro">A stack chosen for exactly this brief's constraints: unreliable field connectivity,
+                high concurrent write volume from 56 sites, and government‑grade security expectations.</p>
+            <div class="sec-rule"></div>
+
+            <div class="stack-grid">
+                <div class="stack-card">
+                    <div class="cap">Web Application</div>
+                    <h4>Admin &amp; Dashboard Front‑End</h4>
+                    <ul>
+                        <li>React.js + TypeScript</li>
+                        <li>Recharts / Chart.js for KPI &amp; CPM visualisations</li>
+                        <li>Google Maps API for the 56‑site geo view</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <div class="cap">Field Application</div>
+                    <h4>Mobile App (Android / iOS)</h4>
+                    <ul>
+                        <li>Cross‑platform build (Flutter or React Native)</li>
+                        <li>Offline‑first local storage with background sync</li>
+                        <li>Native camera + GPS for geo‑tagged media capture</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <div class="cap">Backend</div>
+                    <h4>API &amp; Business Logic</h4>
+                    <ul>
+                        <li>.NET Core Web API, microservices per module (Progress, Scheduling, Compliance, Finance)</li>
+                        <li>SignalR for real‑time delay &amp; approval alerts</li>
+                        <li>REST APIs with OAuth2 / JWT authentication</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <div class="cap">Data Layer</div>
+                    <h4>Storage</h4>
+                    <ul>
+                        <li>PostgreSQL / SQL Server as the primary relational store</li>
+                        <li>Redis for caching &amp; session management</li>
+                        <li>Cloud object storage (Azure Blob / AWS S3) for photos, videos, drawings and certificates,
+                            served via CDN</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <div class="cap">Cloud &amp; DevOps</div>
+                    <h4>Infrastructure</h4>
+                    <ul>
+                        <li>Containerised deployment (Docker) on Azure or AWS</li>
+                        <li>CI/CD pipeline with staged environments (dev / UAT / production)</li>
+                        <li>Auto‑scaling and geo‑redundant backup for disaster recovery</li>
+                    </ul>
+                </div>
+                <div class="stack-card">
+                    <div class="cap">Integrations</div>
+                    <h4>Third‑Party Services</h4>
+                    <ul>
+                        <li>Twilio / WhatsApp Business API for field alerts</li>
+                        <li>SMTP for email notifications &amp; report delivery</li>
+                        <li>Google Maps Geocoding API for geofence validation</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="note">Optional future enhancement (not in base scope): an AI‑assisted early‑warning layer that
+                learns from historical DPR and CPM data to flag at‑risk sites before a threshold breach occurs — a
+                natural Phase 4+ extension once 6–9 months of field data has accumulated.</div>
+        </div>
+    </section>
+
+    <!-- 07 UX -->
+    <section id="ux">
+        <div class="wrap">
+            <div class="sec-head"><span class="sec-num">SEC. 07</span>
+                <h2>UI/UX Approach — PMC Dashboard Concept</h2>
+            </div>
+            <p class="sec-intro">The PMC "Control Room" is the platform's busiest screen — it needs to answer "where is
+                this programme at risk, right now" in under five seconds. Indicative wireframe below; full clickable
+                prototypes to follow at the design phase.</p>
+            <div class="sec-rule"></div>
+
+            <div class="wireframe">
+                <div class="wf-topbar"><span></span><span></span><span></span></div>
+                <div class="wf-body">
+                    <div class="wf-side">
+                        <div class="item" style="width:70%"></div>
+                        <div class="item" style="width:90%"></div>
+                        <div class="item" style="width:60%"></div>
+                        <div class="item" style="width:80%"></div>
+                        <div class="item" style="width:50%"></div>
+                    </div>
+                    <div class="wf-main">
+                        <div class="wf-kpi"></div>
+                        <div class="wf-kpi"></div>
+                        <div class="wf-kpi"></div>
+                        <div class="wf-kpi"></div>
+                        <div class="wf-chart"></div>
+                        <div class="wf-list"></div>
+                        <div class="wf-map"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="wf-caption">LEFT: MODULE NAV (Progress · Schedule · Compliance · Finance) — TOP ROW: KPI CARDS —
+                CENTRE: CPM VARIANCE CHART + PENDING APPROVALS QUEUE — BOTTOM: 56‑SITE HEALTH MAP (R/A/G)</div>
+
+            <div class="cc-grid" style="margin-top:26px;">
+                <div class="cc-card">
+                    <h4><span class="ic">A</span>Design principles</h4>
+                    <ul>
+                        <li>Status colour (Red/Amber/Green) used consistently everywhere — never repurposed for anything
+                            else</li>
+                        <li>One primary action per screen; approvals never buried more than one click deep</li>
+                        <li>Every number on the PMC dashboard is clickable through to its underlying site‑level record
+                        </li>
+                    </ul>
+                </div>
+                <div class="cc-card">
+                    <h4><span class="ic">B</span>Process</h4>
+                    <ul>
+                        <li>Wireframes for all four dashboards, reviewed with PBR and Balaji stakeholders</li>
+                        <li>Clickable high‑fidelity prototype prior to development sign‑off</li>
+                        <li>One structured revision round included before build begins</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 08 ROADMAP -->
+    <section id="roadmap" class="alt">
+        <div class="wrap">
+            <div class="sec-head"><span class="sec-num">SEC. 08</span>
+                <h2>Delivery Roadmap — MVP to Go‑Live</h2>
+            </div>
+            <p class="sec-intro">Indicative timeline, ~31 weeks (≈7 months) from kickoff to full go‑live across all 56
+                sites — subject to detailed requirement sign‑off and timely master‑data availability from PBR/Balaji.
+                MVP is pilot‑ready at week 11.</p>
+            <div class="sec-rule"></div>
+
+            <div class="roadmap">
+                <div class="ruler">
+                    <div class="tick major">W0</div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick major">W4</div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick major">W8</div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick major">W12</div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick major">W16</div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick major">W20</div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick major">W24</div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick major">W28</div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                </div>
+
+                <div class="gbar-row">
+                    <div class="gbar-label">Discovery, Requirement Sign‑off &amp; UI/UX Design<span class="wk">Weeks
+                            0–3</span></div>
+                    <div class="gbar-track">
+                        <div class="gbar" style="left:0%; width:9.7%; background:var(--steel);">Discovery</div>
+                    </div>
+                </div>
+                <div class="gbar-row">
+                    <div class="gbar-label">MVP Build — Progress + CPM + PMC/EPC dashboards, pilot sites<span
+                            class="wk">Weeks 3–11</span></div>
+                    <div class="gbar-track">
+                        <div class="gbar" style="left:9.7%; width:25.8%; background:var(--blueprint-800);">MVP Build
+                        </div>
+                    </div>
+                </div>
+                <div class="gbar-row">
+                    <div class="gbar-label">Pilot UAT &amp; Feedback<span class="wk">Weeks 11–13</span></div>
+                    <div class="gbar-track">
+                        <div class="gbar" style="left:35.5%; width:6.4%; background:var(--cyan);">UAT</div>
+                    </div>
+                </div>
+                <div class="gbar-row">
+                    <div class="gbar-label">Full Rollout — Compliance Vault + Finance Suite, all 56 sites<span
+                            class="wk">Weeks 13–21</span></div>
+                    <div class="gbar-track">
+                        <div class="gbar" style="left:41.9%; width:25.8%; background:var(--blueprint-800);">Full Rollout
+                        </div>
+                    </div>
+                </div>
+                <div class="gbar-row">
+                    <div class="gbar-label">Integration, Security Hardening &amp; Load Testing<span class="wk">Weeks
+                            21–24</span></div>
+                    <div class="gbar-track">
+                        <div class="gbar" style="left:67.7%; width:9.7%; background:var(--steel);">Hardening</div>
+                    </div>
+                </div>
+                <div class="gbar-row">
+                    <div class="gbar-label">UAT, Training &amp; Go‑Live<span class="wk">Weeks 24–27</span></div>
+                    <div class="gbar-track">
+                        <div class="gbar" style="left:77.4%; width:9.7%; background:var(--solar);">Go‑Live</div>
+                    </div>
+                </div>
+                <div class="gbar-row">
+                    <div class="gbar-label">Hypercare &amp; Post‑Launch Support<span class="wk">Weeks 27–31</span></div>
+                    <div class="gbar-track">
+                        <div class="gbar" style="left:87.1%; width:12.9%; background:var(--green);">Hypercare</div>
+                    </div>
+                </div>
+            </div>
+            <div class="note">Ongoing AMC / support terms beyond hypercare to be defined in the commercial proposal
+                (Section 11).</div>
+        </div>
+    </section>
+
+    <!-- 09 TEAM -->
+    <section id="team">
+        <div class="wrap">
+            <div class="sec-head"><span class="sec-num">SEC. 09</span>
+                <h2>Project Team &amp; Delivery Approach</h2>
+            </div>
+            <p class="sec-intro">A dedicated pod, not a shared bench — sized for the full 31‑week programme and scaled
+                down into a lighter support team for hypercare.</p>
+            <div class="sec-rule"></div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="role">Delivery / Project Manager</div>
+                    <div class="n">1</div>
+                </div>
+                <div class="team-card">
+                    <div class="role">Business Analyst</div>
+                    <div class="n">1</div>
+                </div>
+                <div class="team-card">
+                    <div class="role">Solution Architect</div>
+                    <div class="n">1</div>
+                </div>
+                <div class="team-card">
+                    <div class="role">Backend Developers (.NET Core)</div>
+                    <div class="n">2–3</div>
+                </div>
+                <div class="team-card">
+                    <div class="role">Frontend Developers (React)</div>
+                    <div class="n">2</div>
+                </div>
+                <div class="team-card">
+                    <div class="role">Mobile Developer</div>
+                    <div class="n">1–2</div>
+                </div>
+                <div class="team-card">
+                    <div class="role">UI/UX Designer</div>
+                    <div class="n">1</div>
+                </div>
+                <div class="team-card">
+                    <div class="role">QA / Test Engineer</div>
+                    <div class="n">1–2</div>
+                </div>
+                <div class="team-card">
+                    <div class="role">DevOps Engineer</div>
+                    <div class="n">Part‑time</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10 ASSUMPTIONS -->
+    <section id="assumptions" class="alt">
+        <div class="wrap">
+            <div class="sec-head"><span class="sec-num">SEC. 10</span>
+                <h2>Assumptions, Dependencies &amp; Exclusions</h2>
+            </div>
+            <p class="sec-intro">Stated up front so the scope above can be reviewed and priced without hidden surprises
+                on either side.</p>
+            <div class="sec-rule"></div>
+            <div class="assump-cols">
+                <div>
+                    <h4>Client‑Side Dependencies</h4>
+                    <ul>
+                        <li>Finalised master data: the list of 56 sites with coordinates, the 20 EPC contractors and
+                            their site assignments, the AVL master list, and the initial user/role list for RBAC
+                            provisioning.</li>
+                        <li>Timely nomination of a single point of contact each from PBR and Balaji for UAT sign‑off at
+                            every phase gate.</li>
+                        <li>Field devices (smartphones/tablets) and basic network connectivity at each site — assumed
+                            client‑provided, not part of this scope.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Out of Scope (this phase)</h4>
+                    <ul>
+                        <li>Direct system‑to‑system integration with government portals (MSEDCL/MAHAGENCO/CEIG) unless
+                            official APIs are made available — scope is limited to manual status tracking and document
+                            upload until then.</li>
+                        <li>Migration of any pre‑existing historical progress data — to be scoped separately once the
+                            source format is known.</li>
+                        <li>Large‑scale end‑user training rollout across all 56 sites — train‑the‑trainer sessions for
+                            PMC/EPC lead users are included; broader rollout to be planned jointly.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="note">Third‑party API costs (SMS/WhatsApp, maps, cloud hosting, storage) are billed at actuals
+                and are not included in the development quotation. One structured round of UAT‑driven revisions is
+                included per phase; further changes follow a standard change‑order process.</div>
+        </div>
+    </section>
+
+    <footer id="next">
+        <div class="wrap">
+            <div class="sec-head"><span class="sec-num" style="color:var(--cyan);">SEC. 11</span>
+                <h2 style="color:#fff;">Commercial Note &amp; Next Steps</h2>
+            </div>
+            <p style="color:#9FB4C3; max-width:700px; margin-top:16px;">This document covers the complete technical and
+                functional scope. A detailed commercial quotation — broken down by phase and linked to the milestones in
+                Section 08 — will follow as a separate proposal once this scope is reviewed and confirmed, so pricing is
+                built against an agreed baseline rather than assumptions.</p>
+
+            <div class="next-steps">
+                <div class="step">
+                    <div class="sn">01</div>
+                    <h4>Scope Walkthrough</h4>
+                    <p>A joint call with PBR and Balaji to review this document section by section and capture any
+                        changes.</p>
+                </div>
+                <div class="step">
+                    <div class="sn">02</div>
+                    <h4>Sign‑off &amp; Master Data</h4>
+                    <p>Confirm scope and share the 56‑site list, 20 EPC mapping, and AVL master data to begin Discovery.
+                    </p>
+                </div>
+                <div class="step">
+                    <div class="sn">03</div>
+                    <h4>Kickoff</h4>
+                    <p>Kick off Phase 0 — Discovery &amp; UI/UX Design — against the roadmap in Section 08.</p>
+                </div>
+            </div>
+
+            <div class="foot-bottom">
+                <span>VISHUDDHA MEDIA PRIVATE LIMITED — SOFTWARE DEVELOPMENT AGENCY</span>
+                <span>DOC REF: VM-PBR-PMK-SOW-01 · REV 1.0 · PREPARED 30 AUG 2026</span>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
